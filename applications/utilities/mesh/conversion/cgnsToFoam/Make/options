@@ -17,7 +17,7 @@ c++FLAGS+= -DOPENFOAM_VERSION=150 -DMISSING_POINTVOLINTERPOLATION -I./compatibil
 /* Eventually, those packages will get integrated to the main OpenFOAM version   */
 /* In the meantime, we hardcode those values, using relative paths to $PWD.      */
 
-LIBCGNSOOHOME=$(PWD)/../../../../../src/libcgnsoo_3.0/platforms/$(WM_OPTIONS)
+LIBCGNSOOHOME=$(PWD)/../../../../../deps
 
 /*CGNSLIBHOME=$(PWD)/../../../../../src/cgnslib_2.5/platforms/$(WM_OPTIONS)*/
 
@@ -38,5 +38,5 @@ EXE_LIBS = \
     -lmeshTools \
     -ldynamicMesh
 
-EXE_LIBS += -L$(LIBCGNSOOHOME)/lib -lcgnsoo3 -lcgns -lhdf5_cpp
+EXE_LIBS += -L$(LIBCGNSOOHOME)/lib -lcgnsoo3 -lcgns -lsu2hdf5
 /* EXE_LIBS +=-L$(CGNSLIBHOME)/lib -lcgns_2.5 */

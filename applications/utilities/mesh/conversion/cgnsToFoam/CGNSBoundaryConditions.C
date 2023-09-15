@@ -1162,6 +1162,7 @@ Foam::polyMesh* CGNSBoundaryConditions::buildFoamMesh( const Foam::Time& t ) con
     }
     Foam::word defaultPatchName = "defaultWall";
     Foam::word defaultPatchType = Foam::wallPolyPatch::typeName;
+    auto points = mapper.getPoints();
     return new Foam::polyMesh(
         Foam::IOobject
         (
@@ -1169,7 +1170,7 @@ Foam::polyMesh* CGNSBoundaryConditions::buildFoamMesh( const Foam::Time& t ) con
             t.constant(),
             t
         ),
-        Foam::Xfer<Foam::Field<Foam::Vector<double> > >(mapper.getPoints()),
+        std::move(points),
         mapper.getCells(),
         patchFaces,
         patchNames,
