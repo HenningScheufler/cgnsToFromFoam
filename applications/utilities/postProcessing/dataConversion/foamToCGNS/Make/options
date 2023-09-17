@@ -5,7 +5,7 @@ c++FLAGS+= -DOPENFOAM_VERSION=150 -DEXPORT_CYCLIC_BOUNDARIES
 /* Eventually, those packages will get integrated to the main OpenFOAM version          */
 /* In the meantime, we hardcode those values, using relative paths to $PWD.             */
 
-LIBCGNSOOHOME=$(PWD)/../../../../../src/libcgnsoo_3.0/platforms/$(WM_OPTIONS)
+LIBCGNSOOHOME=$(PWD)/../../../../../deps
 /*CGNSLIBHOME=$(PWD)/../../../../../src/cgnslib_2.5/platforms/$(WM_OPTIONS)*/
 
 LINKEXE+=-Wl,-rpath=$(LIBCGNSOOHOME)/lib

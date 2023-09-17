@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cd src
+./install.sh
+
+cd ..
+cd applications
+./Allwmake
+
+cd ..

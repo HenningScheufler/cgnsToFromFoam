@@ -673,9 +673,7 @@ hdf5_conf_data.set('H5_NO_ALIGNEMENT_RESTRICTIONS', 1)
 configure_file(input: 'H5pubconf.h.in',
   output: 'H5pubconf.h',
   format: 'cmake@',
-  configuration : hdf5_conf_data,
-  install: true,
-  install_dir: join_paths(get_option('prefix'), 'include'))
+  configuration : hdf5_conf_data)
 
 
 hdf5_include = include_directories('./')
@@ -1187,7 +1185,7 @@ endif
 
 lib_hdf5_embedded = static_library('su2hdf5',
                           common_SRCS + gen_SRCS,
-                          install : true,
+                          install: true,
                           c_args: hdf5_default_warnings + defs,
                           dependencies : ext_deps)
 

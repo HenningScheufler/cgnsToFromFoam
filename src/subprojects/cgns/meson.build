@@ -1,3 +1,25 @@
+project('cgns', 'c', 'cpp',
+        default_options: ['buildtype=release',
+                          'warning_level=0',
+                          'c_std=c99',
+                          'cpp_std=c++11'])
+
+# mpi flag
+mpi = false
+
+if get_option('custom-mpi')
+  mpi_dep = []
+  mpi = true
+# Otherwise they are automatically determined
+else
+  mpi_dep = [dependency('mpi', language:'c', required : get_option('with-mpi')),
+             dependency('mpi', language:'cpp', required : get_option('with-mpi'))]
+  if mpi_dep[0].found() or mpi_dep[1].found()
+    mpi = true
+  endif
+endif
+
+
 cgns_default_warnings = []
 
 if build_machine.system() != 'windows' and meson.get_compiler('c').get_id() != 'intel'
@@ -48,34 +70,28 @@ endif
 
 configure_file(input: 'cgnstypes.h.in',
   output: 'cgnstypes.h',
-  configuration: cgns_conf_data,
-  install: true,
-  install_dir: join_paths(get_option('prefix'), 'include'))
+  configuration: cgns_conf_data)
 
 configure_file(input: 'cg_hash_types.h.in',
   output: 'cg_hash_types.h',
-  configuration: cgns_conf_data,
-  install: true,
-  install_dir: join_paths(get_option('prefix'), 'include'))
+  configuration: cgns_conf_data)
 
 configure_file(input: 'cgnsconfig.h.in',
   output: 'cgnsconfig.h',
-  configuration: cgns_conf_data,
-  install: true,
-  install_dir: join_paths(get_option('prefix'), 'include'))
+  configuration: cgns_conf_data)
 
 
 cgns_include = include_directories('adf', 'adfh', './')
 
 lib_cgns = static_library('cgns',
                           cgns_sources,
-                          install : true,
+                          install: true,
                           dependencies : hdf5_dep,
                           c_args: cgns_default_warnings)
 header_files = run_command('find', '.', '-name', '*.h').stdout().strip().split('\n')
-install_headers(header_files)
 
 cgns_dep = declare_dependency(link_with: lib_cgns,
                               dependencies: hdf5_dep,
                               include_directories: cgns_include)
+
 
