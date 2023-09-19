@@ -1,0 +1,4 @@
+[wrap-git]
+url = https://github.com/CGNS/CGNS
+revision = v4.4.0
+patch_directory = cgns

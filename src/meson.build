@@ -5,11 +5,16 @@ project('libcgnsoo_3.0', 'c', 'cpp',
                           'c_std=c99',
                           'cpp_std=c++11'])
 
-cgns_dep = dependency('cgns', required : false)
+# cgns_dep = dependency('cgns', required : false)
 
-if not cgns_dep.found()
-    cgns_proj = subproject('cgns')
-    cgns_dep = cgns_proj.get_variable('cgns_dep')
-endif
+# if not cgns_dep.found()
+hdf5_proj = subproject('hdf5')
 
-subdir('libcgnsoo_3.0')
+# cmake = import('cmake')
+cgns_proj = subproject('cgns')
+# cgns_dep = cgns_proj.get_variable('cgns_shared')
+
+    # cgns_dep = hdf5_proj.get_variable('hdf5_dep')
+# endif
+
+# subdir('libcgnsoo_3.0')

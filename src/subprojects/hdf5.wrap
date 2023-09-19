@@ -1,0 +1,4 @@
+[wrap-git]
+url = https://github.com/HDFGroup/hdf5.git
+revision = hdf5-1_14_2
+patch_directory = hdf5

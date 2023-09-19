@@ -1,3 +1,0 @@
-option('with-mpi',   type : 'feature', value : 'auto', description: 'enable MPI support')
-option('custom-mpi',  type : 'boolean', value : false, description: 'enable MPI assuming the compiler and/or env vars give the correct include dirs and linker args.')
-option('static-cgns-deps', type : 'boolean', value : false, description: 'prefer static or dynamic (default) libraries for CGNS dependencies')
