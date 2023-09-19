@@ -89,6 +89,7 @@ lib_cgns = static_library('cgns',
                           dependencies : hdf5_dep,
                           c_args: cgns_default_warnings)
 header_files = run_command('find', '.', '-name', '*.h').stdout().strip().split('\n')
+install_headers(header_files)
 
 cgns_dep = declare_dependency(link_with: lib_cgns,
                               dependencies: hdf5_dep,
