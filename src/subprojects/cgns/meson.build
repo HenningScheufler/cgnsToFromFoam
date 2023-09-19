@@ -70,16 +70,21 @@ endif
 
 configure_file(input: 'cgnstypes.h.in',
   output: 'cgnstypes.h',
-  configuration: cgns_conf_data)
+  configuration: cgns_conf_data,
+  install : true,
+  install_dir : 'include')
 
 configure_file(input: 'cg_hash_types.h.in',
   output: 'cg_hash_types.h',
-  configuration: cgns_conf_data)
+  configuration: cgns_conf_data,
+  install : true,
+  install_dir : 'include')
 
 configure_file(input: 'cgnsconfig.h.in',
   output: 'cgnsconfig.h',
-  configuration: cgns_conf_data)
-
+  configuration: cgns_conf_data,
+  install : true,
+  install_dir : 'include')
 
 cgns_include = include_directories('adf', 'adfh', './')
 
@@ -90,6 +95,7 @@ lib_cgns = static_library('cgns',
                           c_args: cgns_default_warnings)
 header_files = run_command('find', '.', '-name', '*.h').stdout().strip().split('\n')
 install_headers(header_files)
+
 
 cgns_dep = declare_dependency(link_with: lib_cgns,
                               dependencies: hdf5_dep,
