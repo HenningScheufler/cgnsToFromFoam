@@ -27,7 +27,8 @@ EXE_INC = \
     -I$(LIB_SRC)/OpenFOAM/lnInclude \
     -I$(LIB_SRC)/finiteVolume/lnInclude \
     -I$(LIB_SRC)/meshTools/lnInclude \
-    -I$(LIB_SRC)/dynamicMesh/lnInclude
+    -I$(LIB_SRC)/dynamicMesh/lnInclude \
+    -I$(FOAM_USER_LIBBIN)/include \
 
 /* EXE_INC += -I$(CGNSLIBHOME)/include */
 EXE_INC += -I$(LIBCGNSOOHOME)/include
@@ -36,7 +37,8 @@ EXE_LIBS = \
     -lOpenFOAM \
     -lfiniteVolume \
     -lmeshTools \
-    -ldynamicMesh
+    -ldynamicMesh \
+    -L$(FOAM_USER_LIBBIN)
 
 EXE_LIBS += -L$(LIBCGNSOOHOME)/lib -lcgnsoo3 -lcgns -lsu2hdf5
 /* EXE_LIBS +=-L$(CGNSLIBHOME)/lib -lcgns_2.5 */
